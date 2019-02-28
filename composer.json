@@ -1,0 +1,19 @@
+{
+    "name": "morin/tools",
+    "description": "php tools",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Morin",
+            "email": "18500233360@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4":{
+            "morin\\tools\\": "src/morin/tools"
+        }
+    }
+}
