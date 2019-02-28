@@ -1,11 +1,11 @@
 # morin-tools
 morin-tools是一款实用的php开发工具，所提供的工具均在项目生产环境检验使用，希望大神们多提宝贵意见。
 
-##composer安装
+## composer安装
 
 `composer requrie morin/php dev-master`
 
-##使用
+## 使用
 
 `use morin\php\Tools;`
 
