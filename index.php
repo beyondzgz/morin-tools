@@ -22,4 +22,4 @@ use morin\php\Tools;
 
 // var_dump(Tools::build_tree());
 
-var_dump(Tools::week2cn());
+echo '今天星期' . Tools::week2cn();
