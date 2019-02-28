@@ -1,1 +1,4 @@
 /vendor/
+*.bat
+/logs/
+composer.lock
