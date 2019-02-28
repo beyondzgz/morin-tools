@@ -1,6 +1,6 @@
 {
-    "name": "morin/tools",
-    "description": "php tools",
+    "name": "morin/php",
+    "description": "morin php tools",
     "type": "library",
     "authors": [
         {
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4":{
-            "morin\\tools\\": "src/morin/tools"
+            "morin\\php\\": "src/morin/php"
         }
     }
 }
