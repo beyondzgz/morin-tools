@@ -1,5 +1,5 @@
 <?php
-namespace morin\tools;
+namespace morin\php;
 
 class Tools {
 	public function __construct() {

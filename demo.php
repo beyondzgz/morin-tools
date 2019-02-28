@@ -1,5 +1,5 @@
 <?php
 require_once './vendor/autoload.php';
-use morin\tools\Tools;
+use morin\php\Tools;
 
 Tools::Hello();
