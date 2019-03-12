@@ -7,43 +7,43 @@ morin-tools是一款实用的php开发工具，所提供的工具均在项目生
 
 ## 使用
 
-`use morin\php\Tools;`
+`use morin\php\Morin;`
 
 带refer的跳转
-Tools::href('http://baidu.com');
+Morin::href('http://baidu.com');
 
 api接口返回json
-Tools::json();
+Morin::json();
 
 按天向指定目录写日志
-Tools::logs();
+Morin::logs();
 
 生成唯一key
-Tools::gukey();
+Morin::gukey();
 
 生成唯一标识符
-Tools::guid();
+Morin::guid();
 
 订单号
-Tools::order_num();
+Morin::order_num();
 
 curl请求
-Tools::curl();
+Morin::curl();
 
 距离当前时间
-Tools::passed_time(time() - 60);
+Morin::passed_time(time() - 60);
 
 随机字符串
-Tools::noncestr();
+Morin::noncestr();
 
 加密
-Tools::encrypt();
+Morin::encrypt();
 
 解密
-Tools::decrypt();
+Morin::decrypt();
 
 递归无限分类
-Tools::build_tree();
+Morin::build_tree();
 
 中文星期几
-Tools::week2cn();
+Morin::week2cn();
