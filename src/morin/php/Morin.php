@@ -1,15 +1,15 @@
 <?php
 namespace morin\php;
 
-class Tools {
+class Morin {
 	// 带refer的跳转
-	function href($url) {
+	static public function href($url) {
 		header("Content-Type: text/html; charset=utf-8");
 		echo "<script>window.location.href='" . $url . "'</script>";exit;
 	}
 
 	// 返回前端json格式
-	function json($code = 200, $msg = 'success', $data = null) {
+	static public static function json($code = 200, $msg = 'success', $data = null) {
 		header('content-type: application/json;charset=utf-8');
 		echo json_encode(['code' => $code, 'msg' => $msg, 'data' => $data], JSON_UNESCAPED_UNICODE);exit;
 	}
@@ -19,7 +19,7 @@ class Tools {
 	 * @param [string] $name 文件名
 	 * @param [string] $msg 内容
 	 */
-	function logs($name = "filename", $msg = "default") {
+	static function logs($name = "filename", $msg = "default") {
 		$logdir = './logs/';
 		if (!is_dir($logdir)) {
 			mkdir('./logs', 0777);
@@ -37,13 +37,13 @@ class Tools {
 	}
 
 	// 生成唯一key
-	function gukey() {
+	static function gukey() {
 		$guid = strtoupper(md5(uniqid(mt_srand(), true)));
 		return $guid;
 	}
 
 	// 生成唯一标识符
-	function guid($trim = true) {
+	static function guid($trim = true) {
 		// Windows
 		if (function_exists('com_create_guid') === true) {
 			if ($trim === true) {
@@ -70,7 +70,7 @@ class Tools {
 	}
 
 	// 订单号
-	function order_num() {
+	static function order_num() {
 		$microtime = explode(' ', microtime())[0] * 1000000;
 		return date('YmdHis') . str_pad($microtime, 8, 0, STR_PAD_LEFT);
 	}
@@ -84,7 +84,7 @@ class Tools {
 	 * @param [array] $data 请求数据
 	 * @return [string]
 	 */
-	function curl($url = 'baidu.com', $method = 'get', $data = null, $https = true) {
+	static function curl($url = 'baidu.com', $method = 'get', $data = null, $https = true) {
 		//初始化curl
 		$ch = curl_init($url);
 		//字符串不直接输出，进行一个变量的存储
@@ -119,7 +119,7 @@ class Tools {
 	 * @param [timestamp] $time 时间戳
 	 * @return [string]
 	 */
-	function passed_time($time = 0) {
+	static function passed_time($time = 0) {
 		$t = time() - $time;
 		if ($t <= 0) {
 			return false;
@@ -142,7 +142,7 @@ class Tools {
 	}
 
 	// 创建随机字符串
-	function noncestr($length = 16) {
+	static function noncestr($length = 16) {
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		$str = "";
 		for ($i = 0; $i < $length; $i++) {
@@ -157,7 +157,7 @@ class Tools {
 	 * @param string $key 密钥
 	 * @return string
 	 */
-	function encrypt($string = "", $key = "") {
+	static function encrypt($string = "", $key = "") {
 		// openssl_encrypt 加密不同Mcrypt，对秘钥长度要求，超出16加密结果不变
 		$data = openssl_encrypt($string, 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
 		$data = strtolower(bin2hex($data));
@@ -169,13 +169,13 @@ class Tools {
 	 * @param string $key 密钥
 	 * @return string
 	 */
-	function decrypt($string = "fc041974581f3bfede58b726b4f88941", $key = "") {
+	static function decrypt($string = "fc041974581f3bfede58b726b4f88941", $key = "") {
 		$decrypted = openssl_decrypt(hex2bin($string), 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
 		return $decrypted;
 	}
 
 	// 递归树
-	function build_tree($data = [], $pid = 0) {
+	static function build_tree($data = [], $pid = 0) {
 		$treenodes = [];
 		foreach ($data as $k => $v) {
 			if ($v['pid'] == $pid) {
@@ -192,7 +192,7 @@ class Tools {
 	 * @param int $start
 	 * @return string|bool
 	 */
-	function int2word($int = 0) {
+	static function int2word($int = 0) {
 		if (!is_int($int) || $int <= 0) {
 			return false;
 		}
@@ -212,7 +212,7 @@ class Tools {
 	 * @param $char
 	 * @return int|bool
 	 */
-	function word2int($char = "") {
+	static function word2int($char = "") {
 		//检测字符串是否全字母
 		$regex = '/^[a-zA-Z]+$/i';
 
@@ -232,7 +232,7 @@ class Tools {
 	}
 
 	// 时间戳转中文星期
-	function week2cn($timestamp = 0) {
+	static function week2cn($timestamp = 0) {
 		$timestamp = empty($timestamp) ? time() : $timestamp;
 		$week = ['一', '二', '三', '四', '五', '六', '日'];
 		return $week[date('N', $timestamp) - 1];
