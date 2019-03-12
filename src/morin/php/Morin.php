@@ -9,7 +9,7 @@ class Morin {
 	}
 
 	// 返回前端json格式
-	static public static function json($code = 200, $msg = 'success', $data = null) {
+	static public function json($code = 200, $msg = 'success', $data = null) {
 		header('content-type: application/json;charset=utf-8');
 		echo json_encode(['code' => $code, 'msg' => $msg, 'data' => $data], JSON_UNESCAPED_UNICODE);exit;
 	}
@@ -19,7 +19,7 @@ class Morin {
 	 * @param [string] $name 文件名
 	 * @param [string] $msg 内容
 	 */
-	static function logs($name = "filename", $msg = "default") {
+	static public function logs($name = "filename", $msg = "default") {
 		$logdir = './logs/';
 		if (!is_dir($logdir)) {
 			mkdir('./logs', 0777);
@@ -37,13 +37,13 @@ class Morin {
 	}
 
 	// 生成唯一key
-	static function gukey() {
+	static public function gukey() {
 		$guid = strtoupper(md5(uniqid(mt_srand(), true)));
 		return $guid;
 	}
 
 	// 生成唯一标识符
-	static function guid($trim = true) {
+	static public function guid($trim = true) {
 		// Windows
 		if (function_exists('com_create_guid') === true) {
 			if ($trim === true) {
@@ -70,7 +70,7 @@ class Morin {
 	}
 
 	// 订单号
-	static function order_num() {
+	static public function order_num() {
 		$microtime = explode(' ', microtime())[0] * 1000000;
 		return date('YmdHis') . str_pad($microtime, 8, 0, STR_PAD_LEFT);
 	}
@@ -84,7 +84,7 @@ class Morin {
 	 * @param [array] $data 请求数据
 	 * @return [string]
 	 */
-	static function curl($url = 'baidu.com', $method = 'get', $data = null, $https = true) {
+	static public function curl($url = 'baidu.com', $method = 'get', $data = null, $https = true) {
 		//初始化curl
 		$ch = curl_init($url);
 		//字符串不直接输出，进行一个变量的存储
@@ -119,7 +119,7 @@ class Morin {
 	 * @param [timestamp] $time 时间戳
 	 * @return [string]
 	 */
-	static function passed_time($time = 0) {
+	static public function passed_time($time = 0) {
 		$t = time() - $time;
 		if ($t <= 0) {
 			return false;
@@ -142,7 +142,7 @@ class Morin {
 	}
 
 	// 创建随机字符串
-	static function noncestr($length = 16) {
+	static public function noncestr($length = 16) {
 		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		$str = "";
 		for ($i = 0; $i < $length; $i++) {
@@ -157,7 +157,7 @@ class Morin {
 	 * @param string $key 密钥
 	 * @return string
 	 */
-	static function encrypt($string = "", $key = "") {
+	static public function encrypt($string = "", $key = "") {
 		// openssl_encrypt 加密不同Mcrypt，对秘钥长度要求，超出16加密结果不变
 		$data = openssl_encrypt($string, 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
 		$data = strtolower(bin2hex($data));
@@ -169,13 +169,13 @@ class Morin {
 	 * @param string $key 密钥
 	 * @return string
 	 */
-	static function decrypt($string = "fc041974581f3bfede58b726b4f88941", $key = "") {
+	static public function decrypt($string = "fc041974581f3bfede58b726b4f88941", $key = "") {
 		$decrypted = openssl_decrypt(hex2bin($string), 'AES-128-ECB', $key, OPENSSL_RAW_DATA);
 		return $decrypted;
 	}
 
 	// 递归树
-	static function build_tree($data = [], $pid = 0) {
+	static public function build_tree($data = [], $pid = 0) {
 		$treenodes = [];
 		foreach ($data as $k => $v) {
 			if ($v['pid'] == $pid) {
@@ -192,7 +192,7 @@ class Morin {
 	 * @param int $start
 	 * @return string|bool
 	 */
-	static function int2word($int = 0) {
+	static public function int2word($int = 0) {
 		if (!is_int($int) || $int <= 0) {
 			return false;
 		}
@@ -212,7 +212,7 @@ class Morin {
 	 * @param $char
 	 * @return int|bool
 	 */
-	static function word2int($char = "") {
+	static public function word2int($char = "") {
 		//检测字符串是否全字母
 		$regex = '/^[a-zA-Z]+$/i';
 
@@ -232,7 +232,7 @@ class Morin {
 	}
 
 	// 时间戳转中文星期
-	static function week2cn($timestamp = 0) {
+	static public function week2cn($timestamp = 0) {
 		$timestamp = empty($timestamp) ? time() : $timestamp;
 		$week = ['一', '二', '三', '四', '五', '六', '日'];
 		return $week[date('N', $timestamp) - 1];
