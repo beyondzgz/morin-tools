@@ -3,7 +3,7 @@ morin-tools是一款实用的php开发工具，所提供的工具均在项目生
 
 ## composer安装
 
-`composer requrie morin/php dev-master`
+`composer require morin/php dev-master`
 
 ## 使用
 
